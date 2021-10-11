@@ -31,6 +31,11 @@ class Listing extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * A Tag has many Listing records
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
