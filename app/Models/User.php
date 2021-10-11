@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * A User has many Listing records
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
 }
