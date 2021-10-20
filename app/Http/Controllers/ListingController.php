@@ -61,6 +61,13 @@ class ListingController extends Controller
             });
         }
 
+        if (\request()->has('tag')) {
+            $tag = \request()->input('tag');
+            $listings = $listings->filter(function ($listing) use ($tag) {
+                return $listing->tags->contains('slug', $tag);
+            });
+        }
+
         return view('listings.index', compact('listings', 'tags', 'listingsCount'));
     }
 
