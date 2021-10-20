@@ -12,7 +12,7 @@
         </div>
         <div class="mb-12">
             <h2 class="text-2xl text-gray-900 font-medium title-font px-4">
-                All jobss ({{ $listingsCount->count() }})
+                All jobss ({{ $listings->count() }})
             </h2>
         </div>
         <div class="-my-6">
@@ -49,7 +49,7 @@
             @endforeach
         </div>
         <div class="my-16">
-            {{ $listings->links() }}
+{{--            {{ $listings->links() }}--}}
         </div>
     </section>
 </x-app-layout>
