@@ -12,6 +12,15 @@ class Listing extends Model
     protected $guarded = [];
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        // NOTE: instead of using the 'id' as the search key in route/web.php show(),  use the field 'slug'
+        return 'slug';
+    }
+
+    /**
      * A Listing has many Click records
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

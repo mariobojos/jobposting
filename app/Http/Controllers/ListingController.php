@@ -6,6 +6,7 @@ use App\Models\Listing;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use function compact;
 use function strtolower;
 
 class ListingController extends Controller
@@ -21,20 +22,9 @@ class ListingController extends Controller
             ->with('tags')
             ->latest()
             ->get()
-//            ->cursorPaginate(20);
         ;
 
         $listingsCount = Listing::where('is_active', true)->get();
-
-//        $titles = [];
-//        $index = 0;
-//        foreach ($listings as $listing) {
-//            $titles[$index]['title'] = $listing->title;
-//            $titles[$index]['tags'] = $listing->tags->map(function ($tag) {
-//                return $tag->slug;
-//            });
-//            $index++;
-//        }
 
         $tags = Tag::orderBy('name')->get();
 
@@ -72,6 +62,17 @@ class ListingController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Listing  $listing
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Listing $listing, Request $request)
+    {
+        return view('listings.show', compact('listing'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -92,16 +93,6 @@ class ListingController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Listing  $listing
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Listing $listing)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
